@@ -3,13 +3,13 @@
 #include <algorithm>
 
 int partition(std::vector<int>& a, int first, int last) {
-    int pivot = a[(first + last) / 2];
+    int mid = left + (right - left) / 2;
     int left = first;
     int right = last;
 
     while (true) {
-        while (a[left] < pivot) left++;
-        while (a[right] > pivot) right--;
+        while (a[left] < mid) left++;
+        while (a[right] > mid) right--;
         if (left >= right) break;
         std::swap(a[left++], a[right--]);
     }
@@ -19,9 +19,9 @@ int partition(std::vector<int>& a, int first, int last) {
 
 void quick_sort(std::vector<int>& a, int first, int last) {
     if (first >= last) return;
-    int pivot = partition(a, first, last);
-    quick_sort(a, first, pivot);
-    quick_sort(a, pivot + 1, last);
+    int mid = partition(a, first, last);
+    quick_sort(a, first, mid);
+    quick_sort(a, mid + 1, last);
 }
 
 int main() {
@@ -32,3 +32,4 @@ int main() {
     }
     std::cout << "\n";
 }
+
